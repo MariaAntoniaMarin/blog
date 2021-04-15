@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Getting Started with Rails
+Page of this guide: https://guides.rubyonrails.org/getting_started.html
 
-Things you may want to cover:
+## Prerequisites
+### Ruby
+* Offcial documentation in https://www.ruby-lang.org/en/documentation/installation/#apt
+```sudo apt-get install ruby-full```
 
-* Ruby version
+### SQLite3
+* Offcial documentation in https://sqlite.org/index.html
+```sudo apt-get install sqlite3```
 
-* System dependencies
+### Node.js
+* Page of node.js: https://nodejs.org/en/
+```sudo apt install nodejs``` or ```sudo apt install nodejs npm```
 
-* Configuration
+### Yarn
+* Official documentation in https://classic.yarnpkg.com/en/in
+```sudo npm install --global yarn```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Correr y disfrutar :)
+```bin/rails server```
