@@ -25,10 +25,8 @@ jobs:
           ${{ runner.os }}-rubocop-
     - name: Install gems
       run: |
-        bundle config path vendor/bundle
-        bundle config set without 'default doc job cable storage ujs test db'
-        bundle install --jobs 4 --retry 3
+        gem install
     - name: Run RuboCop
       run: |
-        bundle exec rubocop -l
-        bundle exec rubocop -x
+        rubocop -l
+        rubocop -x
