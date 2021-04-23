@@ -1,16 +1,54 @@
-<hi><%= @article.title %></h1>
+<h1><%= @article.title %></h1>
 
 <p><%= @article.body %></p>
 
-<ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", article_path(@article),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" }%></li>
-</ul>
+<div class="btn">
+  <%= link_to "Edit", edit_article_path(@article), :class => "btn btn-primary" %>
+</div>
 
-<h2>Comments</h2>
+<div class="btn ">
+  <%= link_to "Destroy", article_path(@article), method: :delete,
+                  data: { confirm: "Are you sure?" }, :class => "btn btn-danger" %>
+</div>
+
 <%= render @article.comments %>
 
 <h2>Add a comment</h2>
 <%= render 'comments/form' %>
+
+<style>
+h1 {
+  color: #191970; 
+   font-family: 'Bitter', serif; 
+  font-size: 60px; 
+  font-weight: 300;
+  margin: 0 10 72px;
+  padding: 30px;
+  text-align: center;
+}
+
+p {
+  color: #000000; 
+  font-family: 'Open Sans', sans-serif; 
+  font-size: 25px; 
+  font-weight: 300; 
+  line-height: 32px; 
+  margin: 0 0 0 30px;
+  text-align: left;
+}
+
+div.btn {
+  margin: 10px 0 10px 30px;
+  padding: 5px;
+}
+
+h2 {
+  color: #191970;
+   font-family: 'Bitter', serif; 
+  font-size: 30px; 
+  font-weight: 300; 
+  line-height: 32px;
+  text-aling: justify;
+  margin: 0 0 15px 30px;
+}
+</style>
