@@ -1,20 +1,32 @@
 <%= form_with model: [ @article, @article.comments.build ] do |form| %>
-  <p>
+
+  <div class="form">
     <%= form.label :commenter %><br>
-    <%= form.text_field :commenter %>
-  </p>
+    <%= form.text_field :commenter, :rows => 1, :maxlength=> 100 %>
+  </div>
 
-  <p>
+  <div class="form">
     <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
+    <%= form.text_field :body, :rows => 3, :maxlength=> 100 %>
+  </div>
 
-  <p>
+  <div class="form">
     <%= form.label :status %><br>
     <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
-  </p>
+  </div>
 
-  <p>
-    <%= form.submit %>
-  </p>
+  <div class = "btn">
+    <%= form.submit :Create, class: 'btn btn-success'%>
+  </div>
 <% end %>
+
+<style>
+div.form {
+  padding: 5px;
+  margin: 0 0 0 70px;
+}
+
+div.btn {
+  margin: 0 0 0 70px;
+}
+</style>

@@ -1,3 +1,21 @@
+<div class="card">
+  <h5 class="card-header">
+    Comment
+  </h5>
+  <div class="card-body">
+    <h6 class="card-title">
+        <strong>Commenter:</strong>
+        <%= comment.commenter %>
+    </h6>
+    <blockquote class="blockquote mb-0">
+      <%= comment.body %>
+    </blockquote>
+    <%= link_to 'Destroy Comment', [comment.article, comment], method: :delete,
+          data: { confirm: "Are you sure?" }, :class => "btn btn-outline-danger" %>
+  </div>
+</div>
+
+<!--
 <p>
   <strong>Commenter:</strong>
   <%= comment.commenter %>
@@ -13,3 +31,10 @@
               method: :delete,
               data: { confirm: "Are you sure?"} %>
 </p>
+-->
+<style>
+div.card {
+  width: 18rem;
+  margin: 0 0 10px 30px;
+}
+</style>
