@@ -1,10 +1,24 @@
 class CommentsController < ApplicationController
-  http_basic_authenticate_with name: 'ant', password: 'secret', only: :destroy
+  skip_before_action :authenticate, only: [:index]
+
+  def index
+    @comments = Comment.all
+  end
+
+  def new
+    @comment = Comment.new
+  end
 
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params)
-    redirect_to article_path(@article)
+    @comment.user = User.find(params[:user_id])
+
+    if @comment.save
+      redirect_to article_path(@article)
+    else
+      render :new
+    end
   end
 
   def destroy
@@ -17,6 +31,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:commenter, :body, :status)
+    params.require(:comment).permit(:body, :status, :user_id)
   end
 end
