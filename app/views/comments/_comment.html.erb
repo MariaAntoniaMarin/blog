@@ -4,34 +4,15 @@
   </h5>
   <div class="card-body">
     <h6 class="card-title">
-        <strong>Commenter:</strong>
-        <%= comment.commenter %>
+        <strong>User:</strong>
+        <%= comment.user.username %>
     </h6>
     <blockquote class="blockquote mb-0">
       <%= comment.body %>
     </blockquote>
-    <%= link_to 'Destroy Comment', [comment.article, comment], method: :delete,
-          data: { confirm: "Are you sure?" }, :class => "btn btn-outline-danger" %>
   </div>
 </div>
 
-<!--
-<p>
-  <strong>Commenter:</strong>
-  <%= comment.commenter %>
-</p>
-
-<p>
-  <strong>Comment:</strong>
-  <%= comment.body %>
-</p>
-
-<p>
-  <%= link_to 'Destroy Comment', [comment.article, comment],
-              method: :delete,
-              data: { confirm: "Are you sure?"} %>
-</p>
--->
 <style>
 div.card {
   width: 18rem;

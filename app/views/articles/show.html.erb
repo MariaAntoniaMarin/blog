@@ -2,19 +2,9 @@
 
 <p><%= @article.body %></p>
 
-<div class="btn">
-  <%= link_to "Edit", edit_article_path(@article), :class => "btn btn-primary" %>
-</div>
-
-<div class="btn ">
-  <%= link_to "Destroy", article_path(@article), method: :delete,
-                  data: { confirm: "Are you sure?" }, :class => "btn btn-danger" %>
-</div>
+<p>User: <%= @article.user.username %></p>
 
 <%= render @article.comments %>
-
-<h2>Add a comment</h2>
-<%= render 'comments/form' %>
 
 <style>
 h1 {
