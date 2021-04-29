@@ -11,11 +11,11 @@ class AuthenticationController < ApplicationController
         log_in @user
         render "users/show"
       else
-        flash.now[:danger] = 'Invalid username/password combination'
+        flash.now[:alert] = "Invalid username/password combination"
         render 'new'
       end
     else
-      flash.now[:danger] = 'Could not find User'
+      flash[:alert] = "Could not find User"
       render "new"
     end
   end

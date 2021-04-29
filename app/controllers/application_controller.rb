@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def authenticate
     unless logged_in?
       store_location
-      flash[:danger] = "Please log in."
+      flash[:alert] = "Please log in."
       redirect_to root_path
     end
   end
