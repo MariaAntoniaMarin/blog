@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  http_basic_authenticate_with name: 'ant', password: 'secret', except: %i[index show]
+  skip_before_action :authenticate, only: [:index, :show]
 
   def index
     @articles = Article.all
@@ -11,13 +11,19 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @user = User.find(params[:user_id])
+
+    unless current_user?(@user)
+      redirect_to root_path
+    end
   end
 
   def create
-    @article = Article.new(article_params)
+    @user = User.find(params[:user_id])
+    @article = @user.articles.new(article_params)
 
     if @article.save
-      redirect_to @article
+      redirect_to @user
     else
       render :new
     end
@@ -25,13 +31,18 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    @user = User.find(params[:user_id])
+
+    unless current_user?(@user)
+      redirect_to root_path
+    end
   end
 
   def update
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
-      redirect_to @article
+      redirect_to @article.user
     else
       render :edit
     end
@@ -41,7 +52,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @article.destroy
 
-    redirect_to root_path
+    redirect_to @article.user
   end
 
   private

@@ -3,9 +3,19 @@
   <p>Our blog has <%= Article.public_count %> articles and counting!</p>
 </div>
 
-<div class="btn">
-  <%= link_to "New Article", new_article_path, :class => "btn btn-success" %>
-</div>
+<% if logged_in? %>
+  <h2> You are Logged! </h2>
+  <div class="btn">
+    <%= link_to "Profile", current_user, :class => "btn btn-outline-success" %>
+  </div>
+<% else %>
+  <div class="btn">
+    <%= link_to "Log in", login_path, :class => "btn btn-outline-success" %>
+  </div>
+  <div class="btn">
+    <%= link_to "Sign up", new_user_path, :class => "btn btn-outline-primary" %>
+  </div>
+<% end %>
 
 <h2>List of articles</h2>
 <ul class="list-group">
@@ -64,5 +74,10 @@ li {
 
 div.btn {
   margin:  20px 30px;
+}
+p.logged{
+  font-family: 'Open Sans', sans-serif; 
+  font-size: 20px;
+  margin: 0 10 72px;
 }
 </style>

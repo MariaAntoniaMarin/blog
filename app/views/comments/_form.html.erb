@@ -1,10 +1,5 @@
-<%= form_with model: [ @article, @article.comments.build ] do |form| %>
-
-  <div class="form">
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter, :rows => 1, :maxlength=> 100 %>
-  </div>
-
+<%= form_with(model: @comment, url: user_article_comments_path) do |form| %>
+  <%= form.hidden_field :user_id %>
   <div class="form">
     <%= form.label :body %><br>
     <%= form.text_field :body, :rows => 3, :maxlength=> 100 %>

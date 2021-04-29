@@ -2,7 +2,9 @@
   <h1>Update Article</h1>
 </div>
 
-<%= render "form", article: @article %>
+<%= form_with(model: @article, url: user_article_path(@article), local: true) do |form| %>
+  <%= render partial: 'form', article: @article, locals: { form: form } %>
+<% end %>
 
 <style>
 h1 {

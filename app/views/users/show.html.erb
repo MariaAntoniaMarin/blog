@@ -1,0 +1,106 @@
+<div class="header">
+  <h1>User Articles</h1>
+  <p><%= @user.username %> has <%= @user.articles.public_count %> articles and counting!</p>
+</div>
+
+<div class="btn">
+  <%= link_to 'Logout', logout_path, method: :delete, :class =>  "btn btn-outline-danger" %>
+</div>
+
+<div class="btn">
+  <%= link_to 'Edit User', edit_user_path(@user), :class =>  "btn btn-outline-primary" %>
+</div>
+
+<div class="btn">
+  <%= link_to 'New article', new_user_article_path(@user), :class =>  "btn btn-outline-success" %>
+</div>
+
+<h2>List of own articles</h2>
+<ul class="list-group">
+  <% @user.articles.each do |article| %>
+    <% unless article.archived? %>
+      <li class="list-group-item list-group-item-primary">
+        <%= link_to article.title, article%>
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+          <%= link_to "Edit", edit_user_article_path(@user, article), :class => "btn btn-primary" %>
+          <%= link_to "delete", user_article_path(@user, article), method: :delete,
+                          data: { confirm: "Are you sure?" }, :class => "btn btn-danger" %>
+        </div>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<h2>List of other articles</h2>
+<ul class="list-group">
+  <% users = User.where.not(id: @user.id)%>
+  <% users.each do |user| %>
+    <% user.articles.each do |article| %>
+      <% unless article.archived? %>
+        <li class="list-group-item list-group-item-secondary">
+          <%= link_to article.title, article%>
+          <div class="btn-comment">
+            <%= link_to "Comment", new_user_article_comment_path(@user, article), :class => "btn btn-dark" %>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  <% end %>
+</ul>
+
+<style>
+h1 {
+  color: #C0C0C0; 
+  font-family: 'Helvetica Neue', sans-serif; 
+  font-size: 100px; 
+  font-weight: bold; 
+  letter-spacing: -1px; 
+  line-height: 1; 
+  text-align: center;
+  font-color: #5F9EA0;
+}
+
+h2 {
+  font-family: 'Open Sans', sans-serif; 
+  font-size: 30px; 
+  font-weight: 300; 
+  line-height: 32px;
+  text-aling: justify;
+  margin: 0 30px 15px 30px;
+}
+
+p {
+  color: #F0F8FF; 
+  font-family: 'Open Sans', sans-serif; 
+  font-size: 30px; 
+  font-weight: 300; 
+  line-height: 32px; 
+  margin: 0 10 72px;
+  text-align: center;
+}
+
+div.header{
+  background-color: #708090;
+  padding: 20px;
+}
+
+div.btn {
+  margin: 20px 0 20px 30px;
+}
+
+div.btn-group {
+  float: right;
+}
+
+div.btn-comment {
+  float: right;
+}
+
+ul {
+  margin: 0 30px 0 30px;
+}
+
+li {
+  margin: 0 0 10px 0;
+}
+</style>
