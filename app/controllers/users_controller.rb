@@ -3,6 +3,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    unless current_user?(@user)
+      redirect_to root_path
+    end
   end
 
   def new
@@ -11,6 +14,9 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    unless current_user?(@user)
+      redirect_to root_path
+    end
   end
 
   def create
@@ -26,7 +32,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to @user
+      redirect_to root_path
     else
       render :edit
     end

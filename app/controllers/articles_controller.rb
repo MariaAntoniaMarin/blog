@@ -11,6 +11,11 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @user = User.find(params[:user_id])
+
+    unless current_user?(@user)
+      redirect_to root_path
+    end
   end
 
   def create
@@ -26,6 +31,11 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    @user = User.find(params[:user_id])
+
+    unless current_user?(@user)
+      redirect_to root_path
+    end
   end
 
   def update
