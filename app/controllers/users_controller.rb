@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate, only: [:new, :create]
 
+  def index
+    @users = User.all
+    @follow = Follow.new
+  end
+
   def show
     @user = User.find(params[:id])
-    unless current_user?(@user)
-      redirect_to root_path
-    end
   end
 
   def new

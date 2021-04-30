@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  skip_before_action :authenticate, only: [:index]
+  skip_before_action :authenticate
 
   def index
     @comments = Comment.all
@@ -7,6 +7,9 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
+    unless current_user.follows.exists?(user1: Article.find(params[:article_id]).user)
+      redirect_to current_user
+    end
   end
 
   def create
