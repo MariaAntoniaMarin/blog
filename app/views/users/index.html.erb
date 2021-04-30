@@ -1,0 +1,88 @@
+<div class="header">
+  <h1>users</h1>
+  <p>Our blog has <%= User.count %> users and counting!</p>
+</div>
+
+<div class="btn">
+  <%= link_to "Profile", current_user, :class => "btn btn-outline-success" %>
+</div>
+
+<h2>List of users</h2>
+<ul class="list-group">
+  <% @users.each do |user| %>
+    <% unless current_user?(user) %>
+      <li class="list-group-item list-group-item-primary">
+        <%= link_to user.username, user %>
+        <% if current_user.follows.exists?(user1: user) %>
+          <div class="btn-follow" role="group" aria-label="Basic mixed styles example">
+            <%= link_to "Unfollow", user_follow_path(current_user,current_user.follows.find_by(user1: user).id), 
+            method: :delete, :class => "btn btn-dark" %>
+          </div>
+        <% else %>
+          <div class="btn-follow" role="group" aria-label="Basic mixed styles example">
+            <%= link_to "follow", user_follows_path(user), method: :post, :class => "btn btn-dark" %>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<style>
+h1 {
+  color: #C0C0C0; 
+  font-family: 'Helvetica Neue', sans-serif; 
+  font-size: 100px; 
+  font-weight: bold; 
+  letter-spacing: -1px; 
+  line-height: 1; 
+  text-align: center;
+  font-color: #5F9EA0;
+}
+
+p {
+  color: #F0F8FF; 
+  font-family: 'Open Sans', sans-serif; 
+  font-size: 30px; 
+  font-weight: 300; 
+  line-height: 32px; 
+  margin: 0 10 72px;
+  text-align: center;
+}
+
+h2 {
+  font-family: 'Open Sans', sans-serif; 
+  font-size: 30px; 
+  font-weight: 300; 
+  line-height: 32px;
+  text-aling: justify;
+  margin: 0 30px 15px 30px;
+}
+
+div.header{
+  background-color: #708090;
+  padding: 30px;
+}
+
+ul {
+  margin: 0 30px 0 30px;
+}
+
+li {
+  margin: 0 0 10px 0;
+}
+
+p.logged{
+  font-family: 'Open Sans', sans-serif; 
+  font-size: 20px;
+  margin: 0 10 72px;
+}
+
+div.btn-follow {
+  float: right;
+}
+
+div.btn {
+  margin:  20px 30px;
+}
+</style>

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  root 'articles#index'
+  root 'authentication#new'
 
   resources :users do
+    resources :follows
     resources :articles, only: [:new, :create, :edit, :update, :destroy] do
       resources :comments, only: [:new, :create, :destroy]
     end
