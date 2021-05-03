@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    render layout: "authentication"
   end
 
   def edit

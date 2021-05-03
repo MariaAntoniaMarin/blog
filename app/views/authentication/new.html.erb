@@ -1,59 +1,52 @@
-<div class="header">
-  <h1>Articles blog</h1>
-</div>
-
-<h2>Please log in or Sign up</h2>
-<%= flash[:alert] %>
-
-<%= form_tag '/login' do %>
-  <div class="form">
-    <%= label_tag :username %> 
-    <%= text_field_tag :username %>
+  <div class="row p-5">
+  <div class="col-2">
   </div>
-  <div class="form">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
+  <div class="col-4" id="col-form">
+    <h1>Welcome</h1>
+  <%= flash[:alert] %>
+  <%= form_tag '/login' do %>
+    <div class="form">
+      <%= label_tag :username %><br>
+      <%= text_field_tag :username %>
+    </div>
+    <div class="form">
+      <%= label_tag :password %><br>
+      <%= password_field_tag :password %>
+    </div>
+    <div class="btn">
+      <%= submit_tag "login", class: "btn btn-outline-primary" %>
+      <%= link_to "Sign up", new_user_path, :class => "btn btn-outline-primary" %>
+    </div> 
+  <%end%>  
   </div>
-  <div class="btn">
-    <%= submit_tag "login", class: "btn btn-outline-success" %>
+  <div class="col-4">
+    <img src="https://www.cetys.mx/noticias/wp-content/uploads/2020/08/1-7.jpg" class="img-fluid">
   </div>
-<%end%>
-
-<div class="btn">
-    <%= link_to "Sign up", new_user_path, :class => "btn btn-outline-primary" %>
-</div>
-
+  </div>
 <style>
 h1 {
-  color: #C0C0C0;
   font-family: 'Helvetica Neue', sans-serif;
-  font-size: 70px;
-  letter-spacing: -1px;
+  color: #2F4F4F;
   line-height: 1;
-  text-align: center;
-  font-color: #5F9EA0;
+}
+#col-form {
+  background-color: #E6E6FA;
+  border-radius: 25px 0 0 25px;
 }
 
-h2 {
-  font-family: 'Open Sans', sans-serif; 
-  font-size: 30px; 
-  font-weight: 300; 
-  line-height: 32px;
-  text-aling: justify;
-  margin: 0 30px 15px 30px;
+input[type=text] {
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+  border-bottom: 2px solid #2F4F4F;
+  outline: none;
 }
 
-div.header{
-  background-color: #708090;
-  padding: 15px;
-}
-
-div.form {
-  padding: 15px;
-  margin: 0 0 0 70px;
-}
-
-div.btn {
-  margin:  20px 70px;
+input[type=password] {
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+  border-bottom: 2px solid #2F4F4F;
+  outline: none;
 }
 </style>

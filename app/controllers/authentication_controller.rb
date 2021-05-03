@@ -9,7 +9,7 @@ class AuthenticationController < ApplicationController
     if @user
       if @user.authenticate(params[:password])
         log_in @user
-        render "users/show"
+        redirect_to current_user
       else
         flash.now[:alert] = "Invalid username/password combination"
         render 'new'

@@ -1,26 +1,40 @@
-<h1><%= @article.title %></h1>
+<div class="container-xl">
+  <h1><%= @article.title %></h1>
+</div>
 
-<p><%= @article.body %></p>
-
-<p>User: <%= @article.user.username %></p>
-
-<%= render @article.comments %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <p><%= @article.body %></p>
+    </div>
+    <div class="col-6 col-md-4">
+      <div class="row">
+        <div class="user">
+          <img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png">
+          <h3>User: <%= link_to @article.user.username, @article.user %></h3s>
+        </div>
+      </div>
+      <div class="row">
+        <%= render @article.comments %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <style>
 h1 {
-  color: #191970; 
-   font-family: 'Bitter', serif; 
+  color: #F0FFFF; 
+  font-family: 'Bitter', serif;
   font-size: 60px; 
   font-weight: 300;
   margin: 0 10 72px;
-  padding: 30px;
-  text-align: center;
+  padding: 20px;
+  text-align: left;
 }
 
 p {
-  color: #000000; 
-  font-family: 'Open Sans', sans-serif; 
-  font-size: 25px; 
+  font-family: 'Bitter', serif;
+  font-size: 20px; 
   font-weight: 300; 
   line-height: 32px; 
   margin: 0 0 0 30px;
@@ -32,13 +46,25 @@ div.btn {
   padding: 5px;
 }
 
-h2 {
-  color: #191970;
-   font-family: 'Bitter', serif; 
-  font-size: 30px; 
-  font-weight: 300; 
-  line-height: 32px;
-  text-aling: justify;
-  margin: 0 0 15px 30px;
+h3 {
+  text-align: center;
+}
+
+div.container-xl {
+  background-color: #2F4F4F;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 30px 0 0 80px;
+}
+
+img {
+  margin: auto;
+  display: block;
+  width: 40%;
+}
+
+div.container{
+  padding: 5px;
+  margin: 30px 0 0 80px;
 }
 </style>
