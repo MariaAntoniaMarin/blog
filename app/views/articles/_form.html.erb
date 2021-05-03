@@ -1,25 +1,27 @@
-<% form.hidden_field :user_id %><br>
-<div class="form">
-  <%= form.label :title %><br>
-  <%= form.text_field :title, :rows => 1, :maxlength=> 100 %>
-  <% @article.errors.full_messages_for(:title).each do |message| %>
-    <div><%= message %></div>
-  <% end %>
-</div>
-<div class="form">
-  <%= form.label :body %><br>
-  <%= form.text_area :body, :rows => 5, :cols => 100 %><br>
-  <% @article.errors.full_messages_for(:body).each do |message| %>
-    <div><%= message %><div>
-  <% end %>
-</div>
-<div class="form">
-  <%= form.label :status %><br>
-  <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
-</div>
-
-<div class = "btn">
-  <%= form.submit :Create, class: 'btn btn-success' %>
+<div class="container">
+  <% form.hidden_field :user_id %><br>
+  <div class="form">
+    <%= form.label :title %><br>
+    <%= form.text_field :title, :rows => 1, :maxlength=> 100 %>
+    <% @article.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div class="form">
+    <%= form.label :body %><br>
+    <%= form.text_area :body, :rows => 5, :cols => 100 %><br>
+    <% @article.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %><div>
+    <% end %>
+  </div>
+  <div class="form">
+    <%= form.label :status %><br>
+    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+  </div>
+  
+  <div class = "btn">
+    <%= form.submit :Create, class: 'btn btn-success' %>
+  </div>
 </div>
 
 <style>
@@ -31,4 +33,5 @@ div.form {
 div.btn {
   margin:  20px 70px;
 }
+
 </style>
