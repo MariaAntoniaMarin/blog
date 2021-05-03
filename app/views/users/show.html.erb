@@ -44,7 +44,7 @@
   <ul class="list-group">
     <% follows_user = @user.follows.all %>
     <% follows_user.each do |f_user| %>
-    <% user = User.find(f_user.user1_id) %>
+    <% user = User.find(f_user.followed_id) %>
       <% user.articles.each do |article| %>
         <% unless article.archived? %>
           <li class="list-group-item list-group-item-secondary">
@@ -65,7 +65,7 @@
       <% unless article.archived? %>
         <li class="list-group-item list-group-item-primary">
           <%= link_to article.title, article%>
-          <% if current_user.follows.exists?(user1: @user) %>
+          <% if current_user.follows.exists?(followed: @user) %>
             <div class="btn-comment">
               <%= link_to "Comment", new_user_article_comment_path(@user, article), :class => "btn btn-dark" %>
             </div>

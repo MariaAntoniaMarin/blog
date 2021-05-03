@@ -18,6 +18,6 @@ class FollowsController < ApplicationController
   private
 
   def follow_params
-    { user1: User.find(params[:user_id]) }
+    { followed: User.find(params[:user_id]) }
   end
 end

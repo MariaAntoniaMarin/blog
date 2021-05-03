@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
-    unless current_user.follows.exists?(user1: Article.find(params[:article_id]).user)
+    unless current_user.follows.exists?(followed: Article.find(params[:article_id]).user)
       redirect_to current_user
     end
   end
@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params)
-    @comment.user = User.find(params[:user_id])
+    @comment.user = current_user
 
     if @comment.save
       redirect_to article_path(@article)
