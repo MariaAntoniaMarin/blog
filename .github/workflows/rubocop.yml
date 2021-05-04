@@ -26,6 +26,7 @@ jobs:
     - name: Install gems
       run: |
         gem install rubocop
+        bundle install
     - name: Run RuboCop
       run: |
         rubocop -l
