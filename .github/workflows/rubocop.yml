@@ -26,12 +26,7 @@ jobs:
     - name: Install gems
       run: |
         gem install rubocop
-        gem install rspec
-        gem install shoulda
     - name: Run RuboCop
       run: |
         rubocop -l
         rubocop -x
-    - name: Run tests
-      run: |
-        rspec
