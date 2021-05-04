@@ -30,3 +30,5 @@ jobs:
       run: |
         rubocop -l
         rubocop -x
+    - name: Run tests
+      run: rspec
